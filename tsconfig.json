@@ -2,6 +2,6 @@
   "compilerOptions": {
     "outDir": "dist",
     "lib": ["ESNext"],
-    "esModuleInterop": false
+    "esModuleInterop": true
   }
 }
