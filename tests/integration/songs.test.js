@@ -7,8 +7,8 @@ describe('Songs', () => {
       request(App)
         .get('/api/get/all')
         .then((response) => {
-          expect(response.body.length).toBe(20);
-          expect(response.body[0].id).toBe(1);
+          expect(response.body.results.length).toBe(20);
+          expect(response.body.results[0].id).toBe(1);
           done();
         })
         .catch((error) => {
@@ -19,8 +19,8 @@ describe('Songs', () => {
       request(App)
         .get('/api/get/all?page=2')
         .then((response) => {
-          expect(response.body.length).toBe(20);
-          expect(response.body[0].id).toBe(21);
+          expect(response.body.results.length).toBe(20);
+          expect(response.body.results[0].id).toBe(21);
           done();
         })
         .catch((error) => {
@@ -28,4 +28,18 @@ describe('Songs', () => {
         });
     });
   });
+  describe('Songs controller', () => {
+    it('Should return the songs of the genre specified', (done) => {
+      const genre = 'pop'
+      request(App)
+        .get(`/api/get/genre?genre=${genre}`)
+        .then(response => {
+          response.body.results.forEach(song => {
+            expect(song['top_genre']).toBe(genre)
+          })
+          done()
+        })
+        .catch(error => done(error))
+    })
+  })
 });
