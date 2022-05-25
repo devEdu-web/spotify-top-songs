@@ -19,9 +19,10 @@ async function insertSongs(title, artist, top_genre, year_released, added, bpm, 
     acous,
     spch,
     pop,
-    top_year
+    top_year,
+    artist_type
     ) VALUES (
-      ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,? 
+      ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?, ?  
     );`, [
     title,
     artist,
@@ -38,7 +39,8 @@ async function insertSongs(title, artist, top_genre, year_released, added, bpm, 
     acous,
     spch,
     pop,
-    top_year
+    top_year,
+    artist_type
   ])
   console.log(result)
 }
@@ -77,6 +79,7 @@ fs.createReadStream('../../spotify-data/spotify.csv')
     console.log(error)
   })
   .on('data', async (chunk) => {
+    // console.log(chunk['artist type'])
     await insertSongs(chunk.title, chunk.artist, chunk['top genre'], Number(chunk['year released']), chunk.added, Number(chunk.bpm), Number(chunk.nrgy), Number(chunk.dnce), Number(chunk.dB), Number(chunk.live), Number(chunk.val), Number(chunk.dur), Number(chunk.acous), Number(chunk.spch), Number(chunk.pop), Number(chunk['top year']), chunk['artist type'])
   })
   .on('end', () => {
