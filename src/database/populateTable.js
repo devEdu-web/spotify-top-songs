@@ -1,6 +1,6 @@
 import { parse } from "csv-parse";
 import fs from 'node:fs'
-import pool from '../database/connection'
+import pool from './connection.js'
 
 async function insertSongs(title, artist, top_genre, year_released, added, bpm, nrgy, dnce, dB, live, val, dur, acous, spch, pop, top_year, artist_type) {
   const result = await pool.query(`INSERT INTO top_songs (
@@ -43,7 +43,7 @@ async function insertSongs(title, artist, top_genre, year_released, added, bpm, 
   console.log(result)
 }
 
-async function createTopSongsTable(): Promise<any> {
+async function createTopSongsTable() {
   await pool.query(`CREATE TABLE if not exists top_songs (
     id int not null primary key auto_increment,
     title varchar(128) not null,
