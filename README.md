@@ -46,3 +46,7 @@ The API allow you to request musics of an specific gender. You can see a list of
   * Query parameters:
     * page (optional)
     * artist (required)
+* `/api/get/artist_type` returns the songs of the specified artist type (Duo - Solo - Band/Group)
+  * Query parameters;
+    * page (optional)
+    * type (requires)
