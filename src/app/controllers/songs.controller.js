@@ -85,5 +85,16 @@ class SongsController {
       results: result[0],      
     })
   }
+
+  async getByDanceabilityHandler(req, res) {
+    const page = req.query.page || 1
+    const skip = getPagination(page)
+    const result = await songsModel.getByDanceability(skip)
+    res.status(200).json({
+      page: page,
+      totalResults: result[0].length,
+      results: result[0],      
+    })
+  }
 }
 export default new SongsController();

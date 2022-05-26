@@ -35,6 +35,13 @@ class songsModel {
       [artist_type, Math.abs(skip)]
     );
   }
+
+  async getByDanceability(skip) {
+    return pool.query(
+      'SELECT * FROM `top_songs` ORDER BY dnce DESC limit 20 offset ?',
+      [Math.abs(skip)]
+    );
+  }
 }
 
 export default new songsModel();
