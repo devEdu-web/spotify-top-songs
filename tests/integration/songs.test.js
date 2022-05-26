@@ -1,6 +1,7 @@
 import request from 'supertest';
 import App from '../../src/app.js';
 import qs from 'querystring';
+import isDescending from '../../src/helper/checkDescendingOrder';
 
 describe('Songs', () => {
   describe('Pagination', () => {
@@ -82,6 +83,17 @@ describe('Songs', () => {
           response.body.results.forEach((song) => {
             expect(song['artist_type']).toBe(type);
           });
+          done();
+        })
+        .catch((error) => done(error));
+    });
+    it('Should return the songs based on danceability in descending order', (done) => {
+      request(App)
+        .get('/api/get/danceability')
+        .then((response) => {
+          expect(response.body.results.length).toBeGreaterThan(0);
+          const isResponseDescending = isDescending(response.body.results);
+          expect(isResponseDescending).toBe(true);
           done();
         })
         .catch((error) => done(error));
