@@ -49,5 +49,23 @@ class SongsController {
       results: result[0],
     });
   }
+
+  async getByArtistHandler(req, res) {
+    const page = req.query.page || 1;
+    const artist = req.query.artist;
+    const skip = getPagination(page);
+    if (!artist)
+      return res.status(400).json({
+        page: page,
+        totalResults: 0,
+        results: [],
+      });
+    const result = await songsModel.getByArtist(skip, artist);
+    return res.status(200).json({
+      page: page,
+      totalResults: result[0].length,
+      results: result[0],
+    });
+  }
 }
 export default new SongsController();

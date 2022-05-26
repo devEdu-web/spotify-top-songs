@@ -1,5 +1,6 @@
 import request from 'supertest';
 import App from '../../src/app.js';
+import qs from 'querystring';
 
 describe('Songs', () => {
   describe('Pagination', () => {
@@ -31,8 +32,9 @@ describe('Songs', () => {
   describe('Songs controller', () => {
     it('Should return the songs of the genre specified', (done) => {
       const genre = 'pop';
+      const query = qs.stringify({ genre });
       request(App)
-        .get(`/api/get/genre?genre=${genre}`)
+        .get(`/api/get/genre?${query}`)
         .then((response) => {
           response.body.results.forEach((song) => {
             expect(song['top_genre']).toBe(genre);
@@ -43,11 +45,25 @@ describe('Songs', () => {
     });
     it('Should return the songs released on the specified year', (done) => {
       const year = 2012;
+      const query = qs.stringify({ year });
       request(App)
-        .get(`/api/get/year_released?year=${year}`)
+        .get(`/api/get/year_released?${query}`)
         .then((response) => {
           response.body.results.forEach((song) => {
             expect(song['year_released']).toBe(year);
+          });
+          done();
+        })
+        .catch((error) => done(error));
+    });
+    it('Should return the songs of the specified artist', (done) => {
+      const artist = 'Sean Kingston';
+      const query = qs.stringify({ artist });
+      request(App)
+        .get(`/api/get/artist?${query}`)
+        .then((response) => {
+          response.body.results.forEach((song) => {
+            expect(song.artist).toBe(artist);
           });
           done();
         })

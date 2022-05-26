@@ -21,6 +21,13 @@ class songsModel {
       [Math.abs(year), Math.abs(skip)]
     );
   }
+
+  async getByArtist(skip, artist) {
+    return pool.query(
+      'SELECT * FROM `top_songs` WHERE `artist` = ? limit 20 offset ?',
+      [artist, Math.abs(skip)]
+    );
+  }
 }
 
 export default new songsModel();

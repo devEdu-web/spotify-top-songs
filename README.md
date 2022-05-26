@@ -2,7 +2,7 @@
 
 <div align="center">
 
-# My shows list
+# Spotify top Songs
 ***
 ![languages](https://img.shields.io/github/languages/count/devEdu-web/spotify-top-songs)
 ![license](https://img.shields.io/badge/license-MIT-green)
@@ -39,6 +39,10 @@ The API allow you to request musics of an specific gender. You can see a list of
     * page (optional)
     * genre (required)
 * `/api/get/year_released` returns the songs released on the specified year
-  * Query Parameters:
+  * Query parameters:
     * page (optional)
     * year (required)
+* `/api/get/artist` returns the songs of the specified artist
+  * Query parameters:
+    * page (optional)
+    * artist (required)
