@@ -36,6 +36,7 @@ describe('Songs', () => {
       request(App)
         .get(`/api/get/genre?${query}`)
         .then((response) => {
+          expect(response.body.results.length).toBeGreaterThan(0);
           response.body.results.forEach((song) => {
             expect(song['top_genre']).toBe(genre);
           });
@@ -49,6 +50,7 @@ describe('Songs', () => {
       request(App)
         .get(`/api/get/year_released?${query}`)
         .then((response) => {
+          expect(response.body.results.length).toBeGreaterThan(0);
           response.body.results.forEach((song) => {
             expect(song['year_released']).toBe(year);
           });
@@ -62,8 +64,23 @@ describe('Songs', () => {
       request(App)
         .get(`/api/get/artist?${query}`)
         .then((response) => {
+          expect(response.body.results.length).toBeGreaterThan(0);
           response.body.results.forEach((song) => {
             expect(song.artist).toBe(artist);
+          });
+          done();
+        })
+        .catch((error) => done(error));
+    });
+    it('Should return the songs of the specified artist type', (done) => {
+      const type = 'Solo';
+      const query = qs.stringify({ type });
+      request(App)
+        .get(`/api/get/artist_type?${query}`)
+        .then((response) => {
+          expect(response.body.results.length).toBeGreaterThan(0);
+          response.body.results.forEach((song) => {
+            expect(song['artist_type']).toBe(type);
           });
           done();
         })

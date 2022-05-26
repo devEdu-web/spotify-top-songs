@@ -67,5 +67,23 @@ class SongsController {
       results: result[0],
     });
   }
+
+  async getByArtistTypeHandler(req, res) {
+    const page = req.query.page || 1
+    const artist_type = req.query.type
+    const skip = getPagination(page)
+    if (!artist_type)
+      return res.status(400).json({
+        page: page,
+        totalResults: 0,
+        results: [],
+      });
+    const result = await songsModel.getByArtistType(skip, artist_type)
+    res.status(200).json({
+      page: page,
+      totalResults: result[0].length,
+      results: result[0],      
+    })
+  }
 }
 export default new SongsController();
