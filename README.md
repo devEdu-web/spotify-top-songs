@@ -38,3 +38,7 @@ The API allow you to request musics of an specific gender. You can see a list of
   * Query parameters:
     * page (optional)
     * genre (required)
+* `/api/get/year_released` returns the songs released on the specified year
+  * Query Parameters:
+    * page (optional)
+    * year (required)
