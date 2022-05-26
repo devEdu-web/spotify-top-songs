@@ -30,5 +30,24 @@ class SongsController {
       results: result[0],
     });
   }
+
+  async getByYearReleasedHandler(req, res) {
+    const page = req.query.page || 1;
+    const year = req.query.year;
+    const skip = getPagination(page);
+    if (!year)
+      return res.status(400).json({
+        page: page,
+        totalResults: 0,
+        results: [],
+      });
+
+    const result = await songsModel.getByYearReleased(skip, year);
+    return res.status(200).json({
+      page: page,
+      totalResults: result[0].length,
+      results: result[0],
+    });
+  }
 }
 export default new SongsController();

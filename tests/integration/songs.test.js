@@ -30,16 +30,28 @@ describe('Songs', () => {
   });
   describe('Songs controller', () => {
     it('Should return the songs of the genre specified', (done) => {
-      const genre = 'pop'
+      const genre = 'pop';
       request(App)
         .get(`/api/get/genre?genre=${genre}`)
-        .then(response => {
-          response.body.results.forEach(song => {
-            expect(song['top_genre']).toBe(genre)
-          })
-          done()
+        .then((response) => {
+          response.body.results.forEach((song) => {
+            expect(song['top_genre']).toBe(genre);
+          });
+          done();
         })
-        .catch(error => done(error))
-    })
-  })
+        .catch((error) => done(error));
+    });
+    it('Should return the songs released on the specified year', (done) => {
+      const year = 2012;
+      request(App)
+        .get(`/api/get/year_released?year=${year}`)
+        .then((response) => {
+          response.body.results.forEach((song) => {
+            expect(song['year_released']).toBe(year);
+          });
+          done();
+        })
+        .catch((error) => done(error));
+    });
+  });
 });
