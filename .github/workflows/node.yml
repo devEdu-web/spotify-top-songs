@@ -6,11 +6,22 @@ on:
     branches: [ main ]
 jobs: 
   build: 
+    env:
+      CI: true
+    strategy:  # Allows to do the jobs in different environments
+      matrix:
+        node-version: [16.x, 18.x]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with: 
-          node-version: '16'
+          node-version: ${{ matrix.node-version }}
+      - uses: mirromutth/mysql-action@v1.1
+        with:
+          mysql database: 'spotify'
+          mysql root password: ${{ secrets.mysql_db_password }}
+          mysql user: 'root'
+          mysql password: ${{ secrets.mysql_db_password }}
       - run: npm install
-      # - run: npm test
+      - run: npm test
