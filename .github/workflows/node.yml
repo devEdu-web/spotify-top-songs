@@ -20,8 +20,8 @@ jobs:
       - uses: mirromutth/mysql-action@v1.1
         with:
           mysql database: 'spotify'
-          mysql root password: password
+          mysql root password: ${{ secrets.MYSQL_DB_PASSWORD }}
           # mysql user: developer
-          mysql password: ${{ secrets.MYSQL_DB_PASSWORD }}
+          # mysql password: 
       - run: npm install
       - run: npm test
