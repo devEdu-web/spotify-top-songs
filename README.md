@@ -16,7 +16,7 @@
 This API was solely made to go over the basic concepts of SQL and MySQL. It uses a dataset from Kaggle that lists the top 100 songs of 2010-2019.
 
 ## Getting Started
-First of all, let's sort out a few some things about how this project was made so we can understand it fully. 
+First of all, let's sort out a few some things about how this project was made so we can understand it fully. It's worth saying that some properties returned in the response might confuse some, see a table explaining each property [here](./properties.md)
 
 ### Requests result limit
 The default limit for the requests is 20 results per page. Because of performance issues, **this value is immutable!**
@@ -50,3 +50,9 @@ The API allow you to request musics of an specific gender. You can see a list of
   * Query parameters;
     * page (optional)
     * type (requires)
+* `/api/get/danceability` returns the musics ordered by how easy is to dance it. Descending order.
+  * Query parameters:
+    * page (optional)
+* `/api/get/energy` returns the musics ordered by how energetic the music is. Descending order.
+  * Query Parameters:
+    * page (optional)
