@@ -56,3 +56,4 @@ The API allow you to request musics of an specific gender. You can see a list of
 * `/api/get/energy` returns the musics ordered by how energetic the music is. Descending order.
   * Query Parameters:
     * page (optional)
+
