@@ -4,11 +4,7 @@
 
 # Spotify top Songs
 ***
-<<<<<<< HEAD
 ![GitHub language count](https://img.shields.io/github/languages/count/devEdu-web/spotify-top-songs)
-=======
-![languages_count](https://img.shields.io/github/languages/count/devEdu-web/spotify-top-songs)
->>>>>>> bcba5fa5894b631abcb4dbcdbec749d5ddeb131c
 ![license](https://img.shields.io/badge/license-MIT-green)
 ![javascript](https://img.shields.io/github/languages/top/devEdu-web/spotify-top-songs)
 
