@@ -22,6 +22,6 @@ jobs:
           mysql database: 'spotify'
           mysql root password: password
           # mysql user: developer
-          # mysql password: password
+          mysql password: ${{ secrets.MYSQL_DB_PASSWORD }}
       - run: npm install
       - run: npm test
