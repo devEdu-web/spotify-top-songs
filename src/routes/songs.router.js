@@ -8,4 +8,5 @@ songsRouter.get('/get/year_released', songsController.getByYearReleasedHandler);
 songsRouter.get('/get/artist', songsController.getByArtistHandler)
 songsRouter.get('/get/artist_type', songsController.getByArtistTypeHandler)
 songsRouter.get('/get/danceability', songsController.getByDanceabilityHandler)
+songsRouter.get('/get/energy', songsController.getByEnergyHandler)
 export default songsRouter;

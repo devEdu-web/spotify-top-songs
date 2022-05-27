@@ -42,6 +42,12 @@ class songsModel {
       [Math.abs(skip)]
     );
   }
+  async getByEnergy(skip) {
+    return pool.query(
+      'SELECT * FROM `top_songs` ORDER by nrgy DESC limit 20 offset ?',
+      [Math.abs(skip)]
+    );
+  }
 }
 
 export default new songsModel();

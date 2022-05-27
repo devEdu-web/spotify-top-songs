@@ -98,5 +98,18 @@ describe('Songs', () => {
         })
         .catch((error) => done(error));
     });
+    it('Should return the songs based on energy in descending order', (done) => {
+      request(App)
+        .get('/api/get/energy')
+        .then(response => {
+          expect(response.body.results.length).toBeGreaterThan(0)
+          const isResponseDescending = isDescending(response.body.results)
+          expect(isResponseDescending).toBe(true)
+          done()
+        })
+        .catch(error => {
+          done(error)
+        })
+    })
   });
 });
